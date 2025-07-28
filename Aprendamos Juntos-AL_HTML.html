@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendamos Juntos-AL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #ff9e00;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #2c4d7a);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .hero {
+            background: url('https://www.undef.edu.ar/wp-content/uploads/2019/03/header_articulos-1024x515.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #e68f00;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 10px;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-category {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-price span {
+            font-size: 0.9rem;
+            color: #666;
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .add-to-cart {
+            flex-grow: 1;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #3a5a8a;
+        }
+        
+        .wishlist {
+            width: 40px;
+            background-color: #f8f9fa;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .wishlist:hover {
+            color: red;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 3rem;
+        }
+        
+        .category-btn {
+            padding: 8px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 4rem 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-modal.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-header h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff5252;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--success);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #218838;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .cart-modal {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <h1>Librería <span>Aprendamos Juntos-AL</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Todo lo que necesitas para el regreso a clases</h2>
+                <p>Encuentra los mejores útiles escolares, libros y materiales de oficina con los mejores precios del mercado.</p>
+                <a href="#" class="btn">Comprar ahora</a>
+                <a href="#" class="btn btn-outline">Ver catálogo</a>
+            </div>
+        </div>
+    </section>
+    
+    <div class="container">
+        <h2 class="section-title">Nuestros Productos</h2>
+        
+        <div class="categories">
+            <button class="category-btn active" data-category="all">Todos</button>
+            <button class="category-btn" data-category="notebooks">Cuadernos y Otros</button>
+            <button class="category-btn" data-category="pencils">Lápices</button>
+            <button class="category-btn" data-category="backpacks">Mochilas</button>
+            <button class="category-btn" data-category="books">Libros</button>
+            <button class="category-btn" data-category="office">Oficina</button>
+        </div>
+        
+        <div class="products">
+            <!-- Cuadernos -->
+            <div class="product-card" data-category="notebooks">
+                <div class="product-img">
+                    <img src="https://comercial-li.com.pe/cdn/shop/products/192279_700x700.jpg?v=1643658438" alt="Cuaderno profesional">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Cuadernos</div>
+                    <h3 class="product-title">Cuaderno Profesional 200 hojas</h3>
+                    <div class="product-price">Q85.00 <span>Q99.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="1" data-name="Cuaderno Profesional 200 hojas" data-price="85.00" data-image="https://comercial-li.com.pe/cdn/shop/products/192279_700x700.jpg?v=1643658438">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lápices -->
+            <div class="product-card" data-category="pencils">
+                <div class="product-img">
+                    <img src="https://cdnx.jumpseller.com/papeleria-gatobacam/image/23304928/7FC687E4-C5CF-4AE6-A15B-1D1EF4A177D3.jpeg?1653673994" alt="Lápices de colores">
+                </div>
+				
+                <div class="product-info">
+                    <div class="product-category">Lápices</div>
+                    <h3 class="product-title">Lápices de Colores, 24 unidades.</h3>
+                    <div class="product-price">Q65.00 <span>Q75.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="2" data-name="Lápices de Colores, 24 unidades." data-price="65.00" data-image="https://cdnx.jumpseller.com/papeleria-gatobacam/image/23304928/7FC687E4-C5CF-4AE6-A15B-1D1EF4A177D3.jpeg?1653673994">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+						
+                </div>
+            </div>
+            
+            <!-- Mochilas -->
+            <div class="product-card" data-category="backpacks">
+                <div class="product-img">
+                    <img src="https://vasari.vteximg.com.br/arquivos/ids/213682-500-500/VML175138-NG.jpg?v=638121772280870000" alt="Mochila escolar">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Mochilas</div>
+                    <h3 class="product-title">Mochila Escolar Antirrobo</h3>
+                    <div class="product-price">Q225.00 <span>Q250.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="3" data-name="Mochila Escolar Antirrobo" data-price="225.00" data-image="https://vasari.vteximg.com.br/arquivos/ids/213682-500-500/VML175138-NG.jpg?v=638121772280870000">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Libros -->
+            <div class="product-card" data-category="books">
+                <div class="product-img">
+                    <img src="https://media.nidux.net/pull/2000/2000/10535/1198-product-6000c3d0ac255-paperbond.jpg" alt="Libros">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Libros</div>
+                    <h3 class="product-title">Resma de papel BOND</h3>
+                    <div class="product-price">Q100.00 <span>Q150.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="4" data-name="Resma de papel BOND" data-price="350.00" data-image="https://media.nidux.net/pull/2000/2000/10535/1198-product-6000c3d0ac255-paperbond.jpg">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Oficina -->
+            <div class="product-card" data-category="office">
+                <div class="product-img">
+                    <img src="https://i.ebayimg.com/thumbs/images/g/QSoAAOSw-Yln9je2/s-l1200.jpg" alt="Calculadora científica">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Oficina</div>
+                    <h3 class="product-title">Calculadora Científica Avanzada</h3>
+                    <div class="product-price">Q150.00 <span>Q175.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="5" data-name="Calculadora Científica Avanzada" data-price="150.00" data-image="https://i.ebayimg.com/thumbs/images/g/QSoAAOSw-Yln9je2/s-l1200.jpg">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Accesorios -->
+            <div class="product-card" data-category="pencils">
+                <div class="product-img">
+                    <img src="https://i5.walmartimages.com/asr/c51897b4-2434-4bad-91bc-f54ec06d11e8.e9598f3ad132d4eefc4097ca2feb8302.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Estuche escolar">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accesorios</div>
+                    <h3 class="product-title">Estuche Escolar con Divisores</h3>
+                    <div class="product-price">Q55.00 <span>Q65.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="6" data-name="Estuche Escolar con Divisores" data-price="55.00" data-image="https://i5.walmartimages.com/asr/c51897b4-2434-4bad-91bc-f54ec06d11e8.e9598f3ad132d4eefc4097ca2feb8302.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Más productos de cuadernos -->
+            <div class="product-card" data-category="notebooks">
+                <div class="product-img">
+                    <img src="https://www.piedrasanta.com/web/image/product.product/174602/image_1024/%5B09033-RAYADO%5D%20CUADERNO%20DOBLE%20ESPIRAL%203054%20100%20HOJAS%20CUADROS%20%28LINEAS%29%20%7C%20CONQUISTADOR?unique=08f8352" alt="Cuaderno espiral">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Cuadernos</div>
+                    <h3 class="product-title">Cuaderno Espiral 100 hojas</h3>
+                    <div class="product-price">Q45.00 <span>Q55.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="7" data-name="Cuaderno Espiral 100 hojas" data-price="45.00" data-image="https://www.piedrasanta.com/web/image/product.product/174602/image_1024/%5B09033-RAYADO%5D%20CUADERNO%20DOBLE%20ESPIRAL%203054%20100%20HOJAS%20CUADROS%20%28LINEAS%29%20%7C%20CONQUISTADOR?unique=08f8352">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="product-card" data-category="notebooks">
+                <div class="product-img">
+                    <img src="https://m.media-amazon.com/images/I/61K3Ix-PQKL._UF894,1000_QL80_.jpg" alt="Cuaderno espiral">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Pegamentos</div>
+                    <h3 class="product-title">Pegamento escolar líquido,lavable</h3>
+                    <div class="product-price">Q70.00 <span>Q95.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="7" data-name="Cuaderno Espiral 100 hojas" data-price="45.00" data-image="https://m.media-amazon.com/images/I/61K3Ix-PQKL._UF894,1000_QL80_.jpg">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Más productos de libros -->
+            <div class="product-card" data-category="books">
+                <div class="product-img">
+                    <img src="https://acdn-us.mitiendanube.com/stores/001/021/730/products/81-e1e40f470e41771f3916458259985712-1024-1024.jpg" alt="Libro de texto">
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Libros</div>
+                    <h3 class="product-title">Libro de Matemáticas Avanzadas</h3>
+                    <div class="product-price">Q180.00 <span>Q200.00</span></div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="8" data-name="Libro de Matemáticas Avanzadas" data-price="180.00" data-image="https://acdn-us.mitiendanube.com/stores/001/021/730/products/81-e1e40f470e41771f3916458259985712-1024-1024.jpg">Añadir al carrito</button>
+                        <button class="wishlist"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">¿Por qué elegirnos?</h2>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="feature-title">Envío Rápido</h3>
+                <p>Recibe tus productos en 24-48 horas en toda la ciudad.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Calidad Garantizada</h3>
+                <p>Todos nuestros productos tienen garantía de satisfacción.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <h3 class="feature-title">Ofertas Especiales</h3>
+                <p>Descuentos exclusivos para estudiantes y maestros.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-title">Soporte 24/7</h3>
+                <p>Nuestro equipo está siempre disponible para ayudarte.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Librería Aprendamos Juntos-AL</h3>
+                    <p>Tu tienda de confianza para útiles escolares y materiales de oficina con los mejores precios y calidad.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Nuevos lanzamientos</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categorías</h3>
+                    <ul>
+                        <li><a href="#" class="category-link" data-category="notebooks">Cuadernos y Otros</a></li>
+                        <li><a href="#" class="category-link" data-category="pencils">Lápices</a></li>
+                        <li><a href="#" class="category-link" data-category="backpacks">Mochilas</a></li>
+                        <li><a href="#" class="category-link" data-category="books">Libros</a></li>
+                        <li><a href="#" class="category-link" data-category="office">Material de oficina</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Calzada 15 de Septiembre salida Chajul Nebaj</li>
+                        <li><i class="fas fa-phone"></i> +502 00112244</li>
+                        <li><i class="fas fa-envelope"></i> info@aprendamosjuntos-al.com</li>
+                        <li><i class="fas fa-clock"></i> Lunes a Viernes: 9:30am - 6pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+    </footer>
+    
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">Q0.00</span>
+            </div>
+            <button class="checkout-btn">Proceder al Pago</button>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <script>
+        // Cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartIcon = document.getElementById('cart-icon');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCart = document.getElementById('close-cart');
+            const overlay = document.getElementById('overlay');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.querySelector('.cart-count');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            let cart = [];
+            
+            // Open cart
+            cartIcon.addEventListener('click', () => {
+                cartModal.classList.add('open');
+                overlay.classList.add('active');
+            });
+            
+            // Close cart
+            closeCart.addEventListener('click', () => {
+                cartModal.classList.remove('open');
+                overlay.classList.remove('active');
+            });
+            
+            overlay.addEventListener('click', () => {
+                cartModal.classList.remove('open');
+                overlay.classList.remove('active');
+            });
+            
+            // Add to cart
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    const name = button.getAttribute('data-name');
+                    const price = parseFloat(button.getAttribute('data-price'));
+                    const image = button.getAttribute('data-image');
+                    
+                    // Check if item already in cart
+                    const existingItem = cart.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            id,
+                            name,
+                            price,
+                            image,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    
+                    // Show feedback
+                    button.textContent = 'Añadido!';
+                    setTimeout(() => {
+                        button.textContent = 'Añadir al carrito';
+                    }, 1000);
+                });
+            });
+            
+            // Update cart
+            function updateCart() {
+                cartItemsContainer.innerHTML = '';
+                
+                let total = 0;
+                
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <div class="cart-item-img">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">Q${item.price.toFixed(2)}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                                <input type="text" class="quantity-input" value="${item.quantity}" readonly>
+                                <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                            </div>
+                            <button class="remove-item" data-id="${item.id}">Eliminar</button>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                // Update total
+                cartTotal.textContent = `Q${total.toFixed(2)}`;
+                
+                // Update count
+                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = count;
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const id = button.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        
+                        if (item.quantity > 1) {
+                            item.quantity -= 1;
+                            updateCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const id = button.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        item.quantity += 1;
+                        updateCart();
+                    });
+                });
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const id = button.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                    });
+                });
+            }
+            
+            // Category filter functionality
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const products = document.querySelectorAll('.product-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const category = button.getAttribute('data-category');
+                    
+                    // Filter products
+                    products.forEach(product => {
+                        if (category === 'all' || product.getAttribute('data-category') === category) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Category links in footer
+            const categoryLinks = document.querySelectorAll('.category-link');
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = link.getAttribute('data-category');
+                    
+                    // Find corresponding button and click it
+                    const button = document.querySelector(`.category-btn[data-category="${category}"]`);
+                    if (button) {
+                        button.click();
+                        // Scroll to products section
+                        document.querySelector('.section-title').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
